@@ -1,0 +1,375 @@
+/* Modern OX Target UI - Unique Minimal Design */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Modern Green Palette */
+  --emerald-50: #ecfdf5;
+  --emerald-100: #d1fae5;
+  --emerald-200: #a7f3d0;
+  --emerald-300: #6ee7b7;
+  --emerald-400: #34d399;
+  --emerald-500: #10b981;
+  --emerald-600: #059669;
+  --emerald-700: #047857;
+  --emerald-800: #065f46;
+  --emerald-900: #064e3b;
+  
+  /* Accent Colors */
+  --mint: #00f5a0;
+  --teal: #00d4aa;
+  --jade: #00b894;
+  --forest: #00a085;
+  
+  /* Dark Theme */
+  --bg-primary: #0a0f0e;
+  --bg-secondary: #111816;
+  --bg-surface: #1a1f1d;
+  --bg-hover: #222826;
+  
+  /* Text Colors */
+  --text-primary: #ffffff;
+  --text-secondary: #a8b2b0;
+  --text-muted: #6b7b78;
+  
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  
+  /* Border Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 0 20px rgba(16, 185, 129, 0.3);
+  
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  visibility: hidden;
+  user-select: none;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: transparent;
+  color: var(--text-primary);
+  overflow: hidden;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Target Indicator - Modern Minimal */
+#target-indicator {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.target-ring {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--emerald-400);
+  border-radius: var(--radius-full);
+  position: relative;
+  transition: all var(--transition-normal);
+}
+
+.target-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  background: var(--emerald-400);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-normal);
+}
+
+.target-ring.active {
+  border-color: var(--mint);
+  box-shadow: var(--shadow-glow);
+  animation: pulse 2s infinite;
+}
+
+.target-inner.active {
+  background: var(--mint);
+  box-shadow: 0 0 10px var(--mint);
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% { 
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+/* Options Container - Clean Layout */
+#options-container {
+  position: fixed;
+  top: 50%;
+  left: calc(50% + 50px);
+  transform: translateY(-50%);
+  z-index: 1001;
+  max-width: 320px;
+  min-width: 200px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+}
+
+#options-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Option Items - Clean Minimal Design */
+.option-container {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  background: rgba(0, 0, 0, 0.4);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(2px);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  min-height: 36px;
+  max-width: 240px;
+  font-weight: 500;
+}
+
+.option-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.1), transparent);
+  transition: left var(--transition-slow);
+}
+
+.option-container:hover {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  transform: translateX(2px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), 0 0 4px rgba(16, 185, 129, 0.1);
+}
+
+.option-container:hover::before {
+  left: 100%;
+}
+
+.option-container:active {
+  transform: translateX(2px) scale(0.98);
+}
+
+/* Option Icon - Clean Styling */
+.option-icon {
+  font-size: 16px;
+  color: var(--emerald-400);
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  padding: var(--space-1);
+}
+
+.option-container:hover .option-icon {
+  color: var(--mint);
+  background: rgba(0, 245, 160, 0.2);
+  transform: scale(1.05);
+}
+
+/* Option Label - Clean Typography */
+.option-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.4;
+  transition: color var(--transition-fast);
+  flex: 1;
+}
+
+.option-container:hover .option-label {
+  color: var(--text-primary);
+}
+
+/* Responsive Design */
+@media (max-width: 1920px) {
+  #options-container {
+    left: calc(50% + 45px);
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 1600px) {
+  #options-container {
+    left: calc(50% + 40px);
+    max-width: 280px;
+  }
+  
+  .option-container {
+    padding: var(--space-2) var(--space-3);
+    min-height: 40px;
+    max-width: 260px;
+  }
+  
+  .option-label {
+    font-size: 13px;
+  }
+  
+  .option-icon {
+    font-size: 14px;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 1366px) {
+  #options-container {
+    left: calc(50% + 35px);
+    max-width: 260px;
+  }
+  
+  .option-container {
+    padding: var(--space-2) var(--space-3);
+    min-height: 36px;
+    max-width: 240px;
+  }
+  
+  .option-label {
+    font-size: 12px;
+  }
+  
+  .option-icon {
+    font-size: 13px;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 1024px) {
+  #options-container {
+    left: calc(50% + 30px);
+    max-width: 240px;
+  }
+  
+  .option-container {
+    max-width: 220px;
+  }
+}
+
+/* Accessibility */
+.option-container:focus {
+  outline: 2px solid var(--emerald-400);
+  outline-offset: 2px;
+}
+
+.option-container:focus-visible {
+  outline: 2px solid var(--emerald-400);
+  outline-offset: 2px;
+}
+
+/* Simple option appearance - no complex animations */
+.option-container {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Custom Scrollbar */
+#options-wrapper::-webkit-scrollbar {
+  width: 4px;
+}
+
+#options-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#options-wrapper::-webkit-scrollbar-thumb {
+  background: var(--emerald-400);
+  border-radius: var(--radius-full);
+}
+
+#options-wrapper::-webkit-scrollbar-thumb:hover {
+  background: var(--mint);
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .option-container {
+    border-color: var(--emerald-400);
+    background: var(--bg-primary);
+  }
+  
+  .option-container:hover {
+    border-color: var(--mint);
+    background: var(--bg-secondary);
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .option-container,
+  .target-ring,
+  .target-inner {
+    animation: none;
+    transition: none;
+  }
+  
+  .option-container::before {
+    display: none;
+  }
+}
+
+/* Dark Mode Optimization */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #0a0f0e;
+    --bg-secondary: #111816;
+    --bg-surface: #1a1f1d;
+    --bg-hover: #222826;
+  }
+}
