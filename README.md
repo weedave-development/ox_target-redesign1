@@ -1,4 +1,6 @@
-# ox_target
+# ox_target redesign 1 WEE DAVE
+https://streamable.com/ncqg6u
+PREVIEW
 
 ![](https://img.shields.io/github/downloads/overextended/ox_target/total?logo=github)
 ![](https://img.shields.io/github/downloads/overextended/ox_target/latest/total?logo=github)
